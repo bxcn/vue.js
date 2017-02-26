@@ -83,21 +83,14 @@ var doPicker = function() {
     },
     isAll: function(bool) {
       if (bool === undefined) {
-
         return _isAll;
       }
-
-      if (!bool) {
-        _ALL_.checked = false;
-      }
-
       _isAll = bool;
-
-      return _isAll;
     },
     pickall: function() {
       if (this.isAll()) {
         this.unpick(0);
+        _ALL_.checked = false;
       } else {
         this.isAll(true);
 
@@ -111,8 +104,6 @@ var doPicker = function() {
       }
     },
     pick: function(data) {
-
-
       data.checked = true;
       _data.push(data);
     },
@@ -182,30 +173,27 @@ var vueApp = new Vue({
   methods: {
     toggle: function(event) {
       var target = event.target;
-      /*      var id = target.getAttribute('data-id');
-            var data = _pool[id];*/
       picker.toggle(trader.find($(target).data('id')));
     },
     pickall: function() {
       picker.pickall();
+    },
+    unpick: function(event) {
+      var target = event.target;
+        var key = $(target).attr("data-key");
+        picker.unpick(key);
     }
   }
 });
 
 var node = $('#vueApp');
 
-$(document).on('click', '[data-trade="unpick"]', function() {
-  var key = $(this).attr("data-key");
-
-  picker.unpick(key);
-
-})
-$(document).on('click', '[data-type="cancel"]', function() {
+$(document)
+.on('click', '[data-type="cancel"]', function() {
   picker.cancel();
   node.hide();
 })
-
-$(document).on('click', '[data-type="init"]', function() {
+.on('click', '[data-type="init"]', function() {
 
   var data = $('[name="hidden"]').val();
   if (data) {
@@ -224,9 +212,7 @@ $(document).on('click', '[data-type="init"]', function() {
   node.show();
 
 })
-
-
-$(document).on('click', '[data-type="ok"]', function() {
+.on('click', '[data-type="ok"]', function() {
 
   var data = picker.data();
 

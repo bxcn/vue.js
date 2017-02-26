@@ -7,11 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
   <title>bootStrap</title>
+  <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-sham.js"></script>
+  <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-shim.min.js"></script>
   <link rel="stylesheet" href="http://www.jianlika.com/assets/vendor/bootstrap-v3.3.6.min.css?v=183f1d3676">
   <link rel="stylesheet" href="http://www.jianlika.com/assets/app.css?v=c62b7fae6a">
   <script src="/Public/js/third3/jquery.min.js"></script>
   <script src="/Public/js/third3/vue.js"></script>
   <script src="/Public/js/third3/aspect.js"></script>
+<!--   <script src="//cdn.bootcss.com/vue/2.1.10/vue.runtime.js"></script>
+<script src="//cdn.bootcss.com/vue/2.1.10/vue.common.min.js"></script>
+<script src="//cdn.bootcss.com/vue/2.1.10/vue.runtime.common.js"></script> -->
 </head>
 <style type="text/css">
 .vue_layer {
@@ -39,7 +44,7 @@
           <div class="extra">
             <span v-if="result.length == 0" class="placeholder">请选择行业</span>
             <span v-for="(item, index) in result ">
-              {{item.name}}<i data-trade="unpick" :data-id="item.id" :data-key="index">×</i>
+              {{item.name}}<i @click="unpick" :data-id="item.id" :data-key="index">×</i>
             </span>
           </div>
         </header>
