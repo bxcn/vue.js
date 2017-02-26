@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Vue 测试实例-组件嵌套二种方式</title>
+  <script src="//cdn.bootcss.com/vue/2.1.10/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <Itemlist1>
+    	<Item v-for="item in items1" :data="item"/>
+    </Itemlist1>
+
+    <Itemlist2 :itemlist="items2"></Itemlist2>
+  </div>
+  <script>
+
+  Vue.component('Item',{
+  	template: '<div>{{data.name}}</div>',
+  	props: {
+  		data:Object
+  	}
+
+  });
+  // 方式一：嵌套组件时用<slot></slot>,
+  Vue.component("Itemlist1", {
+    template: '<div @click="ok"><slot></slot></div>',
+    props: {
+      itemList: Array
+    },
+    methods: {
+      ok: function() {
+        alert(this.abc);
+      }
+    }
+  });
+
+  // 方式二：
+  Vue.component("Itemlist2", {
+    template: '<div @click="ok"><Item v-for="item in itemlist" :data="item"/></div>',
+    props: {
+      itemlist: Array
+    },
+    methods: {
+      ok: function() {
+        alert(this.abc);
+      }
+    }
+  });
+
+  // 创建根实例
+  var vueApp = new Vue({
+    el: '#app',
+    data: {
+      items1: [{
+        'name': "item1"
+      }, {
+        'name': "item2"
+      }, {
+        'name': "item3"
+      }],
+      items2: [{
+        'name': "item1-1"
+      }, {
+        'name': "item2-1"
+      }, {
+        'name': "item3-1"
+      }]
+    }
+  })
+  </script>
+</body>
+
+</html>
