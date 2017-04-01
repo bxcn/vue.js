@@ -31,8 +31,7 @@
   }
 </style>
 <body>
-<a href="#" class="btn btn-primary" data-type="init" data-dismiss="modal">初始化</a>
-<input type="text" name="hidden" value="130000,110000,210100">
+<a href="#" id="City" data-city-load data-city-value="130000,110000,210100" style="margin:200px;display:block;width:100px;height:30px;background-color: red;">初始化</a>
   <div  id="vueApp"  class="city-block">
     <div class="city-header">
       <div class="city-title">请选择工作城市<em>单选</em></div>
@@ -51,7 +50,7 @@
         <ul>
           <li v-for="(item, index) in province">
             <div  @click='list' :data-id="item.id" class="city-name " :class="{ active: item.checked }">{{item.name}}</div>
-            <ul  v-if="item.childrens && item.list == true"  class="city-sub-block ">
+            <ul  v-if="item.childrens && item.list == true":data-id="item.id"   class="city-sub-block ">
               <li><div  @click='listChecked' :data-id="item.id" class="city-sub-name " :class="{ active: item.checked }">{{item.name}}</div></li>
               <li  v-for="(subItem, subIndex) in item.childrens"><div  @click='toggle' :data-id="subItem.id" class="city-sub-name" :class="{ active: subItem.checked }">{{subItem.name}}</div></li>
             </ul>
@@ -63,8 +62,6 @@
       </div>
     </div>
   </div>
-
-
   <script src="/Public/js/view/city.js"></script>
 </body>
 

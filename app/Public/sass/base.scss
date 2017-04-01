@@ -13,6 +13,8 @@ ul,li {
   clear:none;
 }
 .city-block {
+  position:absolute;
+  display:none;
   width: 442px;
   height: 450px;
   background-color: #ffffff;
@@ -38,10 +40,32 @@ ul,li {
     }
 
     .city-close {
-      width: 18px;
-      min-width: 18px;
-      height: 18px;
-      background-color: #d8d8d8;
+      position:relative;
+      width: 17px;
+      min-width: 17px;
+      height: 17px;
+      transform:rotate(-45deg);
+      cursor:pointer;
+
+      &:before,
+      &:after {
+        position:absolute;
+        top:8px;
+        left:2px;
+        display:block;
+        width:13px;
+        height:1px;
+        content:'';
+        background:#5e5e5e;
+      }
+      &:after {
+        top:2px;
+        left:8px;
+        display:block;
+        width:1px;
+        height:80%;
+      }
+
     }
 
   }
@@ -151,8 +175,9 @@ ul,li {
               justify-content: center;
               align-items: center;
               float:left;
+              padding:0 5px;
               position:relative;
-              width: 80px;
+              min-width: 80px;
               height: 35px;
             }
           }
