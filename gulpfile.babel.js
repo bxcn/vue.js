@@ -6,19 +6,18 @@ const $ =  gulpLoadPlugins();
 gulp.task('js', () => {
   // 不匹配lib文件夹下所有文件
   return gulp.src(['app/Public/js/**/*.js'])
-/*    .pipe($.uglify({
+/*/!*    .pipe($.uglify({
       //preserveComments:'license',
       //mangle:true,//类型：Boolean 默认：true 是否修改变量名
       mangle: { except: ['require', 'exports', 'module', '$'] }, //排除混淆关键字
       compress: false, //类型：Boolean 默认：true 是否完全压缩
-    }))*/
-    .pipe(gulp.dest('dist/Public/js/'));
+    }))*!/
+    .pipe(gulp.dest('dist/Public/js/'));*/
 });
 
 gulp.task('sass', () => {
   return gulp.src(['app/Public/sass/**/*.scss'])
     .pipe($.sass())
-
   .pipe(gulp.dest('dist/Public/css/'));
 });
 
@@ -26,7 +25,7 @@ gulp.task('sass', () => {
 
  // 重新加载
 const reload = browserSync.reload;
-gulp.task('serve', ['sass', 'js'], () => {
+gulp.task('serve', ['sass'], () => {
   // http://www.browsersync.cn/docs/options/
   browserSync({
     notify:false,//不显示在浏览器中的任何通知。

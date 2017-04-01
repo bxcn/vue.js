@@ -1,8 +1,5 @@
 // 行业
 function doTrader() {
-
-
-
   // 实际数据
   var _data = [
     { "id": 1, "name": "互联网·游戏·软件", "data": [{ "id": 5, "name": "网络游戏", "pid": 1, "checked": false }, { "id": 4, "name": "计算机软件", "pid": 1 }, { "id": 2, "name": "互联网/电子商务", "pid": 1 }, { "id": 1, "name": "计算机硬件", "pid": 1 }] },
