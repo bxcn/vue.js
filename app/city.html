@@ -51,7 +51,7 @@
           <li v-for="(item, index) in province">
             <div  @click='list' :data-id="item.id" class="city-name " :class="{ active: item.checked }">{{item.name}}</div>
             <ul  v-if="item.childrens && item.list == true":data-id="item.id"   class="city-sub-block ">
-              <li><div  @click='listChecked' :data-id="item.id" class="city-sub-name " :class="{ active: item.checked }">{{item.name}}</div></li>
+              <li><div  @click='subAll' :data-id="item.id" class="city-sub-name " :class="{ active: item.checked }">{{item.name}}</div></li>
               <li  v-for="(subItem, subIndex) in item.childrens"><div  @click='toggle' :data-id="subItem.id" class="city-sub-name" :class="{ active: subItem.checked }">{{subItem.name}}</div></li>
             </ul>
             <div class="clearfix"></div>

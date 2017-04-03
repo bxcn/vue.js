@@ -97,14 +97,8 @@
                 _data.push(data);
             },
             unpick: function (index) {
-
                 var data = _data[index];
                 data.checked = false;
-
-                if (data.id == 0) {
-                    this.isAll(false);
-                }
-
                 _data.splice(index, 1);
             },
             toggle: function (city) {
@@ -125,14 +119,24 @@
                 })
 
                 if (p.childrens) {
-                    p.list = !p.list;
+                    p.list = true;
                 } else {
                     this.toggle(p);
                 }
             },
-            listChecked: function (p) {
-                p.disabled = !p.disabled;
+            subAll: function (p) {
+                var that = this;
+                var c = !p.disabled;
+                p.disabled = c;
+
+                cityData.find(p.id).childrens.forEach(function (data) {
+                    if(data.checked) {
+                        that.toggle(data);
+                    }
+                });
                 this.toggle(p);
+
+                console.log(p.disabled);
             }
         });
     };
@@ -170,7 +174,8 @@
                 var id = that.data('id');
                 var city = cityData.find(id);
                 var pid = city.pid;
-                if (pid && cityData.find(city.pid).disabled) {
+
+                if (pid && cityData.find(pid).disabled ==  true) {
                     return;
                 }
                 picker.toggle(city);
@@ -181,9 +186,10 @@
                 var target = event.target;
                 picker.list(cityData.find($(target).data('id')));
             },
-            listChecked: function (event) {
+            subAll: function (event) {
                 var target = event.target;
-                picker.listChecked(cityData.find($(target).data('id')));
+                picker.subAll(cityData.find($(target).data('id')));
+                callClick();
             },
             unpick: function (event) {
                 var target = event.target;
@@ -204,6 +210,9 @@
 
         $.each(data, function (_, d) {
             d.checked = true;
+            if(d.childrens) {
+                d.disabled = true;
+            }
         });
         //vueApp._data.result = data;
         picker.init(data);
@@ -223,7 +232,7 @@
     .on('mouseleave', '.city-sub-block', function () {
         var that = $(this);
         var id = that.data('id');
-        cityData.find(id).list = false;
+       // cityData.find(id).list = false;
     })
 
     window.cityPlugin = {
@@ -276,6 +285,7 @@ $(function(){
             var data = cityPlugin.getData();
             console.log(data);
             that.html(data.map(function(d){ return d.name}).join(','));
+            that.attr('data-city-value',data.map(function(d){ return d.id}).join(','))
         });
     });
 });
