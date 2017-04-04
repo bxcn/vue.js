@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>bootStrap</title>
+  <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-sham.js"></script>
+  <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-shim.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.2.6/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://www.jianlika.com/assets/vendor/bootstrap-v3.3.6.min.css?v=183f1d3676">
+  <link rel="stylesheet" href="http://www.jianlika.com/assets/app.css?v=c62b7fae6a">
+  <link rel="stylesheet" href="/Public/css/trade.css">
+  <script src="/Public/js/view/data.js"></script>
+  <script src="/Public/js/third3/aspect.js"></script>
+</head>
+<style type="text/css">
+.vue_layer {
+  display:none;
+}
+  .modal-body {
+    width:1000px;
+    margin:0 auto;
+    padding:0;
+    border:1px solid #ddd;
+  }
+  .panel-trade {
+    width:1000px;
+    height:600px;
+  }
+</style>
+<body>
+<a href="#" data-trade-load data-trade-value="" style="margin:200px;display:block;width:100px;height:30px;background-color: red;">初始化</a>
+  <div  id="vueApp"  class="trade-block">
+    <div class="trade-header">
+      <div class="trade-title">请选择工作城市<em>单选</em></div>
+      <div class="trade-close"></div>
+    </div>
+    <div class="trade-main">
+      <div  v-for="(item, index) in firstTrade" class="trade-block-item">
+        <div class="trade-item-title">
+          <h3>{{item.name}}</h3>
+        </div>
+        <ul>
+          <li  v-for="(tradeItem, index) in item.childrens" >
+            <div  @click='list' :data-id="tradeItem.id" class="trade-name " :class="{ active: tradeItem.checked }">{{tradeItem.name}}</div>
+            <ul  v-if="tradeItem.childrens && tradeItem.list == true" :data-id="tradeItem.id"   class="trade-sub-block ">
+              <li  v-for="(subItem, subIndex) in tradeItem.childrens"><div  @click='toggle' :data-id="subItem.id" class="trade-sub-name" :class="{ active: subItem.checked }">{{subItem.name}}</div></li>
+            </ul>
+            <div class="clearfix"></div>
+          </li>
+
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/Public/js/view/trade.js"></script>
+</body>
+
+</html>

@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd035515-6c60-456b-9a76-8ac2e0784fea" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Public/js/view/city.js" afterPath="$PROJECT_DIR$/app/Public/js/view/city.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/city.html" afterPath="$PROJECT_DIR$/app/city.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Public/js/view/trade1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Public/sass/trade.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/trade.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Public/js/view/data.js" afterPath="$PROJECT_DIR$/app/Public/js/view/data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Public/js/view/trade.js" afterPath="$PROJECT_DIR$/app/Public/js/view/trade.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/Public/css/city.css" afterPath="$PROJECT_DIR$/dist/Public/css/city.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/Public/css/trade.css" afterPath="$PROJECT_DIR$/dist/Public/css/trade.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/Public/sass/base.scss" afterPath="$PROJECT_DIR$/app/Public/sass/city.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,21 +28,23 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
+      <file leaf-file-name="trade.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1728">
-              <caret line="64" column="70" lean-forward="false" selection-start-line="64" selection-start-column="55" selection-end-line="64" selection-end-column="70" />
-              <folding />
+            <state relative-caret-position="233">
+              <caret line="74" column="39" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="280" selection-end-column="3" />
+              <folding>
+                <element signature="e#209#364#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="city.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/city.html">
+      <file leaf-file-name="trade.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/trade.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="954">
-              <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+            <state relative-caret-position="319">
+              <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -43,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="city.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="city.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Public/js/view/city.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="287" column="73" lean-forward="false" selection-start-line="287" selection-start-column="73" selection-end-line="287" selection-end-column="73" />
+            <state relative-caret-position="343">
+              <caret line="279" column="39" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="290" selection-end-column="3" />
               <folding>
                 <element signature="e#134#297#0" expanded="false" />
                 <element signature="e#1499#1755#0" expanded="false" />
@@ -57,44 +66,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trade.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade.js">
+      <file leaf-file-name="city.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Public/sass/city.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="1080">
+              <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
+              <folding>
+                <element signature="e#301#1180#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file leaf-file-name="city.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/Public/css/city.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gulpfile.babel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
+      <file leaf-file-name="trade.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/Public/css/trade.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+            <state relative-caret-position="135">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Public/sass/base.scss">
+      <file leaf-file-name="trade.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Public/sass/trade.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-              <folding>
-                <element signature="e#317#1196#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,11 +130,26 @@
       <find>820000</find>
       <find>active</find>
       <find>disabled</find>
-      <find>listChecked</find>
       <find>key</find>
+      <find>listChecked</find>
+      <find>dohot</find>
+      <find>.city-block-item</find>
+      <find>provinceData</find>
+      <find>province</find>
+      <find>firstTrade.find</find>
+      <find>picker</find>
+      <find>init</find>
+      <find>twoTrade</find>
+      <find>city-</find>
+      <find>firstTrade.cle</find>
     </findStrings>
     <replaceStrings>
       <replace>subAll</replace>
+      <replace>tradeData</replace>
+      <replace>twoTrade</replace>
+      <replace>poolTrade.find</replace>
+      <replace>trade-</replace>
+      <replace>tradePlugin</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -137,10 +161,15 @@
         <option value="$PROJECT_DIR$/app/Public/js/view/home.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/gulpfile.babel.js" />
-        <option value="$PROJECT_DIR$/app/Public/js/view/data.js" />
-        <option value="$PROJECT_DIR$/app/Public/sass/base.scss" />
         <option value="$PROJECT_DIR$/app/city.html" />
         <option value="$PROJECT_DIR$/app/Public/js/view/city.js" />
+        <option value="$PROJECT_DIR$/app/Public/js/view/data.js" />
+        <option value="$PROJECT_DIR$/app/Public/sass/base.scss" />
+        <option value="$PROJECT_DIR$/app/Public/js/view/trade.js" />
+        <option value="$PROJECT_DIR$/app/trade.html" />
+        <option value="$PROJECT_DIR$/app/Public/sass/trade.scss" />
+        <option value="$PROJECT_DIR$/dist/Public/css/city.css" />
+        <option value="$PROJECT_DIR$/dist/Public/css/trade.css" />
       </list>
     </option>
   </component>
@@ -389,8 +418,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\work\github\vue.js\app\Public\js\view" />
+      <recent name="D:\work\github\vue.js\app\Public\sass" />
       <recent name="D:\work\github\vue.js\app" />
+      <recent name="D:\work\github\vue.js\app\Public\js\view" />
     </key>
   </component>
   <component name="RunManager">
@@ -487,24 +517,24 @@
       <workItem from="1491025337043" duration="19561000" />
       <workItem from="1491048647810" duration="990000" />
       <workItem from="1491049772601" duration="294000" />
-      <workItem from="1491201814770" duration="3567000" />
+      <workItem from="1491201814770" duration="7341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25213000" />
+    <option name="totallyTimeSpent" value="28987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11111111" sideWeight="0.5043668" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.49563318" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18215811" sideWeight="0.49563318" order="2" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.066593885" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09061135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -559,12 +589,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/sass/base.scss">
+    <entry file="file://$PROJECT_DIR$/app/Public/sass/city.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
           <folding>
-            <element signature="e#317#1196#0" expanded="false" />
+            <element signature="e#301#1180#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -599,12 +629,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/sass/base.scss">
+    <entry file="file://$PROJECT_DIR$/app/Public/sass/city.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
           <folding>
-            <element signature="e#317#1196#0" expanded="false" />
+            <element signature="e#301#1180#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -639,12 +669,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/sass/base.scss">
+    <entry file="file://$PROJECT_DIR$/app/Public/sass/city.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
           <folding>
-            <element signature="e#317#1196#0" expanded="false" />
+            <element signature="e#301#1180#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,7 +687,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade.js">
+    <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -679,39 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1728">
-          <caret line="64" column="70" lean-forward="false" selection-start-line="64" selection-start-column="55" selection-end-line="64" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/js/view/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="22909" lean-forward="false" selection-start-line="6" selection-start-column="22909" selection-end-line="6" selection-end-column="22909" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/sass/base.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <element signature="e#317#1196#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,15 +738,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Public/js/view/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2006">
+          <caret line="8" column="4326" lean-forward="false" selection-start-line="8" selection-start-column="4326" selection-end-line="8" selection-end-column="4326" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="42" column="29" lean-forward="true" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/trade.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Public/sass/trade.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Public/js/view/city.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="287" column="73" lean-forward="false" selection-start-line="287" selection-start-column="73" selection-end-line="287" selection-end-column="73" />
+        <state relative-caret-position="343">
+          <caret line="279" column="39" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="290" selection-end-column="3" />
           <folding>
             <element signature="e#134#297#0" expanded="false" />
             <element signature="e#1499#1755#0" expanded="false" />
             <element signature="e#5684#5721#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Public/js/view/trade.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="74" column="39" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="280" selection-end-column="3" />
+          <folding>
+            <element signature="e#209#364#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Public/sass/city.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
+          <folding>
+            <element signature="e#301#1180#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/Public/css/city.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/Public/css/trade.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
