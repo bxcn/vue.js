@@ -239,7 +239,7 @@
         el: function() {
             return node;
         },
-        init: function(value){
+        load: function(value){
             init(value);
             return this;
         },
@@ -280,7 +280,7 @@ $(function(){
         var left = offset.left + width;
 
         cityPlugin.el().css({'left':left,'top':top});
-        cityPlugin.setMaxSize(6).setMessage("最少输入六个").init(value).show();
+        cityPlugin.setMaxSize(6).setMessage("最少输入六个").load(value).show();
         cityPlugin.click(function(){
             var data = cityPlugin.getData();
             console.log(data);

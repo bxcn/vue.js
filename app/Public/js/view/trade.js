@@ -229,7 +229,7 @@
         el: function() {
             return node;
         },
-        init: function(value){
+        load: function(value){
             init(value);
             return this;
         },
@@ -270,7 +270,7 @@ $(function(){
         var left = offset.left + width;
 
         tradePlugin.el().css({'left':left,'top':top});
-        tradePlugin.setMaxSize(6).setMessage("最少输入六个").init(value).show();
+        tradePlugin.setMaxSize(6).setMessage("最少输入六个").load(value).show();
         tradePlugin.click(function(){
             var data = tradePlugin.getData();
             console.log(data);

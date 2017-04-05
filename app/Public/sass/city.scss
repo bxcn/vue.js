@@ -13,11 +13,27 @@ ul,li {
   clear:none;
 }
 .city-block {
+
   position:absolute;
   width: 442px;
   height: 450px;
   background-color: #ffffff;
   border: solid 1px #cacaca;
+  z-index:100000;
+
+  &:before {
+    position:absolute;
+    left:-9px;
+    top:120px;
+    width:15px;
+    height:15px;
+    content:'';
+    display:block;
+    border-top:1px solid #cacaca;
+    border-left:1px solid #cacaca;
+    background-color: #fff;
+    transform:rotate(-45deg);
+  }
 
   .city-header {
     display: flex;
@@ -53,7 +69,7 @@ ul,li {
         left:2px;
         display:block;
         width:13px;
-        height:1px;
+        height:2px;
         content:'';
         background:#5e5e5e;
       }
