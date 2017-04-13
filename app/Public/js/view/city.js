@@ -17,6 +17,7 @@
         var _pool = [];
         provinceData.forEach(function (_d) {
             _d.checked = false;
+            _d.selected = false;
             _d.list = false;
             _pool[_d.id] = _d;
 
@@ -50,6 +51,7 @@
                 province.data().forEach(function (data) {
                     if (data.list) {
                         data.list = false;
+                        data.selected = false;
                     }
                 })
 
@@ -84,7 +86,7 @@
                 }
 
                 if (data.length == 0) {
-                    provinceData.clear();
+                    cityData.clear();
                 }
                 // 写缓存
                 _prev = _data.concat();
@@ -115,11 +117,13 @@
                 province.data().forEach(function (data) {
                     if (data.list) {
                         data.list = false;
+                        data.selected = false;
                     }
                 })
 
                 if (p.childrens) {
                     p.list = true;
+                    p.selected = true;
                 } else {
                     this.toggle(p);
                 }
@@ -137,6 +141,15 @@
                 this.toggle(p);
 
                 console.log(p.disabled);
+            },
+            clear: function () {
+                _data = [];
+                _pev.forEach(function(d){
+                    d.checked = false;
+                });
+
+                _pev = _data;
+
             }
         });
     };
@@ -145,6 +158,13 @@
     var maxSize = 5;
     var message = "最多选择"+ maxSize +"个";
     function doCheck() {
+
+        if( maxSize == 1) {
+
+            picker.clear();
+
+            return true;
+        }
         if (picker.data().length >= maxSize) {
             alert(message);
             return false;
@@ -169,6 +189,8 @@
         },
         methods: {
             toggle: function (event) {
+
+
                 var target = event.target;
                 var that = $(target);
                 var id = that.data('id');
@@ -184,7 +206,11 @@
             },
             list: function (event) {
                 var target = event.target;
+                var parent = cityData.find($(target).data('id'));
                 picker.list(cityData.find($(target).data('id')));
+                if(!parent.childrens) {
+                    callClick();
+                }
             },
             subAll: function (event) {
                 var target = event.target;
@@ -280,9 +306,10 @@ $(function(){
         var left = offset.left + width;
 
         cityPlugin.el().css({'left':left,'top':top});
-        cityPlugin.setMaxSize(6).setMessage("最少输入六个").load(value).show();
+        cityPlugin.setMaxSize(1).setMessage("最少输入六个").load(value).show();
         cityPlugin.click(function(){
             var data = cityPlugin.getData();
+            $('#vueApp').hide();
             console.log(data);
             that.html(data.map(function(d){ return d.name}).join(','));
             that.attr('data-city-value',data.map(function(d){ return d.id}).join(','))
