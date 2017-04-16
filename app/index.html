@@ -16,71 +16,73 @@
   <script src="/Public/js/third3/aspect.js"></script>
 </head>
 <style type="text/css">
-.vue_layer {
-  display:none;
-}
-  .modal-body {
-    width:1000px;
-    margin:0 auto;
-    padding:0;
-    border:1px solid #ddd;
+  .vue_layer {
+    display : none;
   }
+
+  .modal-body {
+    width   : 1000px;
+    margin  : 0 auto;
+    padding : 0;
+    border  : 1px solid #ddd;
+  }
+
   .panel-trade {
-    width:1000px;
-    height:600px;
+    width  : 1000px;
+    height : 600px;
   }
 </style>
 <body>
 <a href="#" class="btn btn-primary" data-type="init" data-dismiss="modal">初始化</a>
 
-<input type="hidden"  name="hidden" value="">
+<input type="hidden" name="hidden" value="">
 
-  <div id="vueApp" class="vue_layer">
-    <div class="modal-body">
-      <div class="panel-picker" data-panel="trade">
-        <header class="panel-heading">
-          <div class="title">最多选择 5 项</div>
-          <div class="extra">
-            <span v-if="result.length == 0" class="placeholder">请选择行业</span>
-            <span v-for="(item, index) in result ">
+<div id="vueApp" class="vue_layer">
+  <div class="modal-body">
+    <div class="panel-picker" data-panel="trade">
+      <header class="panel-heading">
+        <div class="title">最多选择 5 项</div>
+        <div class="extra">
+          <span v-if="result.length == 0" class="placeholder">请选择行业</span>
+          <span v-for="(item, index) in result ">
               {{item.name}}<i @click="unpick" :data-id="item.id" :data-key="index">×</i>
             </span>
-          </div>
-        </header>
-        <div class="panel-body">
-          <div class="panel-trade">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td width="30%">全部</td>
-                  <td>
-                    <span  @click='pickall' data-id="0" :class="{ checked: isAll.checked }">
+        </div>
+      </header>
+      <div class="panel-body">
+        <div class="panel-trade">
+          <table class="table">
+            <tbody>
+            <tr>
+              <td width="30%">全部</td>
+              <td>
+                    <span @click='pickall' data-id="0" :class="{ checked: isAll.checked }">
                       全部
                     </span>
-                  </td>
-                </tr>
-                <tr v-for="item in items">
-                  <td width="30%">{{item.name}}</td>
-                  <td>
+              </td>
+            </tr>
+            <tr v-for="item in items">
+              <td width="30%">{{item.name}}</td>
+              <td>
                     <span v-for="subItem in item.data" @click='toggle' :data-id="subItem.id" :class="{ checked: subItem.checked }">
                       {{subItem.name}}
                     </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
 
     <div class="modal-footer">
 
-                <a href="#" class="btn btn-primary" data-type="ok" data-dismiss="modal">确认</a>
-                <a href="#" class="btn" data-type="cancel" data-dismiss="modal">取消</a>
-            </div>
+      <a href="#" class="btn btn-primary" data-type="ok" data-dismiss="modal">确认</a>
+      <a href="#" class="btn" data-type="cancel" data-dismiss="modal">取消</a>
     </div>
   </div>
-  <script src="/Public/js/view/trade.js"></script>
+</div>
+<script src="/Public/js/view/trade.js"></script>
 </body>
 
 </html>

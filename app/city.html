@@ -16,51 +16,62 @@
   <script src="/Public/js/third3/aspect.js"></script>
 </head>
 <style type="text/css">
-.vue_layer {
-  display:none;
-}
-  .modal-body {
-    width:1000px;
-    margin:0 auto;
-    padding:0;
-    border:1px solid #ddd;
+  .vue_layer {
+    display : none;
   }
+
+  .modal-body {
+    width   : 1000px;
+    margin  : 0 auto;
+    padding : 0;
+    border  : 1px solid #ddd;
+  }
+
   .panel-trade {
-    width:1000px;
-    height:600px;
+    width  : 1000px;
+    height : 600px;
   }
 </style>
 <body>
 <a href="#" id="City" data-city-load data-city-value="" style="margin:200px;display:block;width:100px;height:30px;background-color: red;">初始化</a>
-  <div  id="vueApp"  class="city-block">
-    <div class="city-header">
-      <div class="city-title">请选择工作城市<em>单选</em></div>
-      <div class="city-close"></div>
+<div id="vueApp" class="city-block">
+  <div class="city-header">
+    <div class="city-title">请选择工作城市<em>单选</em></div>
+    <div class="city-close"></div>
+  </div>
+  <div class="city-main">
+    <div class="city-block-item">
+      <div class="city-item-title">热门城市：</div>
+      <ul>
+        <li v-for="(item, index) in hotCity">
+          <div @click='toggle' class="city-hot-name" :data-id="item.id" :class="{active: item.checked}">{{item.name}}
+          </div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
     </div>
-    <div class="city-main">
-      <div class="city-block-item">
-        <div class="city-item-title">热门城市：</div>
-        <ul>
-          <li v-for="(item, index) in hotCity"><div @click='toggle' class="city-hot-name" :data-id="item.id" :class="{active: item.checked}">{{item.name}}</div></li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="city-block-item">
-        <div class="city-item-title">按省份选择：</div>
-        <ul>
-          <li v-for="(item, index) in province">
-            <div  @click='list' :data-id="item.id" class="city-name " :class="{  selected: item.selected, active: item.checked }">{{item.name}}</div>
-            <ul  v-if="item.childrens && item.list == true":data-id="item.id"   class="city-sub-block ">
-              <li  v-for="(subItem, subIndex) in item.childrens"><div  @click='toggle' :data-id="subItem.id" class="city-sub-name" :class="{ active: subItem.checked }">{{subItem.name}}</div></li>
-            </ul>
-            <div class="clearfix"></div>
-          </li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
+    <div class="city-block-item">
+      <div class="city-item-title">按省份选择：</div>
+      <ul>
+        <li v-for="(item, index) in province">
+          <div @click='list' :data-id="item.id" class="city-name " :class="{  selected: item.selected, active: item.checked }">
+            {{item.name}}
+          </div>
+          <ul v-if="item.childrens && item.list == true" :data-id="item.id" class="city-sub-block ">
+            <li v-for="(subItem, subIndex) in item.childrens">
+              <div @click='toggle' :data-id="subItem.id" class="city-sub-name" :class="{ active: subItem.checked }">
+                {{subItem.name}}
+              </div>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
     </div>
   </div>
-  <script src="/Public/js/view/city.js"></script>
+</div>
+<script src="/Public/js/view/city.js"></script>
 </body>
 
 </html>
