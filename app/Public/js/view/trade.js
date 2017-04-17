@@ -4,6 +4,10 @@ var tradeData = Object.keys( window.trade ).map( function( id ) {
   data.id  = id;
   return data;
 } );
+/**
+ * 对原始数据处理，处理成我们需要的
+ * @returns {Object}
+ */
 function doTrade () {
   var _pool = [];
   tradeData.forEach( function( data ) {
@@ -29,8 +33,12 @@ function doTrade () {
     }
   } );
 }
-// 选择器
-var doPicker = function() {
+/**
+ * 选择行业的选择器
+ * 包括：选中 清空 初始化
+ * @returns {Object}
+ */
+function doPicker() {
   var _data = [];
   var _prev = [];
   return AOP.mixin( {
@@ -52,9 +60,11 @@ var doPicker = function() {
       _data.push( data );
     },
     unpick:function( index ) {
-      var data     = _data[ index ];
-      data.checked = false;
-      _data.splice( index, 1 );
+      var data = _data[ index ];
+      if ( data ) {
+        data.checked = false;
+        _data.splice( index, 1 );
+      }
     },
     toggle:function( item ) {
       var index = $.inArray( item, _data );
@@ -73,17 +83,32 @@ var doPicker = function() {
     }
   } );
 };
-$( function() {
+/**
+ * 对数据渲染和校验
+ * @constructor
+ */
+function TradeRender () {
   var settings = {};
   var target   = {};
+  this.init  = function( _settings, _target, data ) {
+    settings = _settings;
+    target   = _target;
+    data = data && trade.find( data.split( ',' ) ) || [];
+    picker.init( data );
+  }
   // 行业数据
-  var trade    = doTrade();
+  var trade  = doTrade();
   // 行业选择器
-  var picker   = doPicker();
+  var picker = doPicker();
+  $( document ).on( 'click', '[data-trade-close]', function() {
+    // 关闭选中的
+    var id = $( this ).data( 'trade-close' );
+    picker.unpick( id );
+  } );
   /**
    * Vue
    */
-  var vueApp   = new Vue( {
+  var vueApp = new Vue( {
     el:'#vueApp',
     data:{
       trade:trade.data()
@@ -94,8 +119,8 @@ $( function() {
         var id   = that.data( 'id' );
         picker.toggle( trade.find( id ) );
       },
-      close:function(){
-        $('#vueApp').hide();
+      close:function() {
+        $( '#vueApp' ).hide();
       }
     }
   } );
@@ -129,41 +154,26 @@ $( function() {
     } );
     target.html( html.join( '' ) );
     target.attr( 'value', value.join( ',' ) );
-    $(settings.input).val( value );
+    $( settings.input ).val( value );
   }
   
   // AOP
   picker.before( 'pick', doCheck );
   picker.after( 'pick', render );
   picker.after( 'unpick', render );
-  
+};
+
+
+$( function() {
+  var tradeRender = new TradeRender();
   $.fn.trade = function( options ) {
-    var node  = $( '#vueApp' );
-    var that  = $( this );
-    /**
-     *
-     * @type {*}
-     */
+    var node = $( '#vueApp' );
+    var that = $( this );
     
+    var init = this.init = function( data ) {
+      tradeRender.init( options, that, data );
+    };
     
-    that.on( 'click', '[data-trade-close]', function() {
-      init( that.attr( 'value' ) );
-      // 关闭选中的
-      var id = $( this ).data( 'trade-close' );
-      picker.unpick( id );
-    } );
-    /**
-     * 初始化数据
-     * @param value
-     */
-    function init ( data ) {
-      settings = options;
-      target   = that;
-      data     = data && trade.find( data.split( ',' ) ) || [];
-      picker.init( data );
-    }
-    
-    this.init = init;
     that.click( function() {
       init( that.attr( 'value' ) );
       node.show();
