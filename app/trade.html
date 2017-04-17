@@ -31,40 +31,114 @@
     width  : 1000px;
     height : 600px;
   }
+
+  /* 删除选中标签 */
+  .tag-checked-name {
+    display          : inline-block;
+    position         : relative;
+    height           : 24px;
+    border-radius    : 1px;
+    color            : #4abee0;
+    font-size        : 12px;
+    line-height      : 24px;
+    padding          : 0 20px 0 8px;
+    background-color : #f7fdff;
+    border           : solid 1px #4abee0;
+    white-space      : nowrap;
+    overflow         : hidden;
+    text-overflow    : ellipsis;
+    margin-right     : 5px;
+  }
+
+  .tag-checked-name:first-of-type {
+    margin-left : 0px;
+  }
+
+  .tag-checked-name em {
+    display   : block;
+    position  : absolute;
+    top       : 5px;
+    right     : 5px;
+    width     : 13px;
+    height    : 13px;
+    cursor    : pointer;
+    transform : rotate(45deg);
+  }
+
+  .tag-checked-name em:after {
+    display    : block;
+    position   : absolute;
+    content    : '';
+    top        : 6px;
+    width      : 13px;
+    height     : 1px;
+    background : #4abee0;
+  }
+
+  .tag-checked-name em:before {
+    display    : block;
+    position   : absolute;
+    content    : '';
+    top        : 0px;
+    left       : 5px;
+    width      : 1px;
+    height     : 13px;
+    background : #4abee0;
+  }
+
+  a {
+    display:inline-block;
+    width:300px;
+    height:400px;
+    overflow:hidden;
+    margin:20px;
+    background-color : #ccff00;
+  }
 </style>
 <body>
-<a href="#" data-trade-load data-trade-value="" style="margin:200px;display:block;width:100px;height:30px;background-color: red;">初始化</a>
+<a href="#" data-trade-load1 value="33" >初始化</a>
+<a href="#" data-trade-load2 value="32" >初始化</a>
+<input id="tradeHiddenValue1" type="hidden">
+<input id="tradeHiddenValue2" type="hidden">
+
 <div id="vueApp" class="trade-block">
   <div class="trade-header">
     <div class="trade-title">请选择工作城市<em>单选</em></div>
-    <div class="trade-close"></div>
+    <div @click="close" class="trade-close"></div>
   </div>
   <div class="trade-main">
-    <div v-for="(item, index) in firstTrade" class="trade-block-item">
+    <div v-for="(item, index) in trade" class="trade-block-item">
       <div class="trade-item-title">
         <h3>{{item.name}}</h3>
       </div>
       <ul>
         <li v-for="(tradeItem, index) in item.childrens">
-          <div @click='list' :data-id="tradeItem.id" class="trade-name " :class="{ active: tradeItem.checked }">
+          <div @click='toggle' :data-id="tradeItem.id" class="trade-name " :class="{ active: tradeItem.checked }">
             {{tradeItem.name}}
           </div>
-          <ul v-if="tradeItem.childrens && tradeItem.list == true" :data-id="tradeItem.id" class="trade-sub-block ">
-            <li v-for="(subItem, subIndex) in tradeItem.childrens">
-              <div @click='toggle' :data-id="subItem.id" class="trade-sub-name" :class="{ active: subItem.checked }">
-                {{subItem.name}}
-              </div>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
         </li>
-
       </ul>
       <div class="clearfix"></div>
     </div>
   </div>
 </div>
 <script src="/Public/js/view/trade.js"></script>
+
+<script>
+  $( function() {
+    $( '[data-trade-load1]' ).trade( {
+      input:'#tradeHiddenValue1',
+      max:6,
+      tips:'最多输入六个'
+    } ).init( '33' );
+
+    $( '[data-trade-load2]' ).trade( {
+      input:'#tradeHiddenValue2',
+      max:6,
+      tips:'最多输入六个'
+    } ).init( '32' )
+  } );
+</script>
 </body>
 
 </html>

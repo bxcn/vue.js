@@ -31,7 +31,7 @@ gulp.task('serve', ['sass'], () => {
     notify:false,//不显示在浏览器中的任何通知。
     port:800,//端口
     host:'10.100.1.157',
-    browser:["opera"/*, "firefox"*/], // 在chrome、firefix下打开该站点
+    browser:["firefox"/*, "firefox"*/], // 在chrome、firefix下打开该站点
     server: {
       baseDir:['dist/','app/'],// 应用程序目录
       index:'index.html',// 在应用程序目录中指定打开特定的文件
