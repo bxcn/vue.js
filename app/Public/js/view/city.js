@@ -1,28 +1,47 @@
-(function() {
+$( function() {
   // 实际数据
   var provinceData = window.city.data;
-  var hotCityData  = window.city.hot;
+  var hotcity      = window.city.hot;
   
+  /**
+   * 热门城市
+   * 全部列表，
+   * @returns {Object}
+   */
   function doProvince () {
     var province = provinceData;
+    // 获取热门城市id数组
+    var _hotCity = doCity().find( hotcity.map( function( _d ) {
+      return _d.id;
+    } ) );
     return AOP.mixin( {
       data:function() {
         return province;
+      },
+      hotData:function() {
+        return _hotCity;
       }
     } );
   }
   
+  /**
+   * 所有省市级别
+   *
+   * @returns {Object} 返回一个对象集合，
+   */
   function doCity () {
     var _pool = [];
-    provinceData.forEach( function( _d ) {
-      _d.checked     = false;
-      _d.selected    = false;
-      _d.list        = false;
-      _pool[ _d.id ] = _d;
-      if ( _d.childrens ) {
-        _d.childrens.forEach( function( _item ) {
-          _item.checked     = false;
-          _pool[ _item.id ] = _item;
+    provinceData.forEach( function( data ) {
+      data.checked = data.selected = data.list = false;
+      // 省级和直辖市
+      _pool[ data.id ] = data;
+      // 判断是否是省级
+      if ( data.childrens ) {
+        data.childrens.forEach( function( data ) {
+          // 默认给一个不选中状态
+          data.checked     = false;
+          // 添加市
+          _pool[ data.id ] = data;
         } )
       }
     } );
@@ -37,48 +56,27 @@
           } );
         }
         return _pool[ args ];
-      },
-      clear:function() {
-        _pool.forEach( function( data ) {
-          data.checked  = false;
-          data.disabled = false;
-        } );
-        province.data().forEach( function( data ) {
-          if ( data.list ) {
-            data.list     = false;
-            data.selected = false;
-          }
-        } )
       }
     } );
   }
   
-  function doHotCity () {
-    // 获取热门城市id数组
-    var _hotCity = cityData.find( hotCityData.map( function( _d ) {
-      return _d.id;
-    } ) );
-    return AOP.mixin( {
-      data:function() {
-        return _hotCity;
-      }
-    } );
-  }
-  
-  // 选择器
-  var doPicker = function() {
+  /**
+   * 选择器
+   * @returns {Object}
+   */
+  var doPicker   = function() {
     var _data = [];
-    var _pev  = [];
+    var _list = [];
     return AOP.mixin( {
       init:function( data ) {
-        if ( data ) {
-          _data = data;
+        this.clear();
+        var that = this;
+        if ( data.length != 0 ) {
+          data.forEach( function( _data ) {
+            that.pick( _data );
+          } )
         }
-        if ( data.length == 0 ) {
-          cityData.clear();
-        }
-        // 写缓存
-        _prev = _data.concat();
+        this.clearList();
       },
       data:function() {
         return _data;
@@ -95,192 +93,185 @@
       toggle:function( city ) {
         var index = $.inArray( city, _data );
         if ( ~index ) {
-          picker.unpick( index );
+          this.unpick( index );
         } else {
-          picker.pick( city );
+          this.pick( city );
         }
       },
-      list:function( p ) {
+      clearList:function( item ) {
         // 点击省份时先清楚现在打开的tag
-        province.data().forEach( function( data ) {
-          if ( data.list ) {
-            data.list     = false;
-            data.selected = false;
-          }
-        } )
-        if ( p.childrens ) {
-          p.list     = true;
-          p.selected = true;
+        if ( item ) {
+          _list.forEach( function( data ) {
+            if ( item.id != data.id ) {
+              data.list = data.selected = false;
+            }
+          } );
         } else {
-          this.toggle( p );
+          _list.forEach( function( data ) {
+            data.list = data.selected = false;
+          } );
         }
       },
-      subAll:function( p ) {
-        var that   = this;
-        var c      = !p.disabled;
-        p.disabled = c;
-        cityData.find( p.id ).childrens.forEach( function( data ) {
-          if ( data.checked ) {
-            that.toggle( data );
+      list:function( item ) {
+        
+        // 判断是否是省份级
+        if ( item.childrens ) {
+          this.clearList( item );
+          //已经是选中状态
+          if ( item.selected ) {
+            item.list = item.selected = false;
+            _list == [];
+          } else {
+            item.list = item.selected = true;
+            _list.push( item );
           }
-        } );
-        this.toggle( p );
-        console.log( p.disabled );
+        } else {
+          this.toggle( item );
+        }
       },
       clear:function() {
-        _data = [];
-        _pev.forEach( function( d ) {
-          d.checked = false;
+        _data.forEach( function( data ) {
+          data.checked = false;
         } );
-        _pev = _data;
+        _data = [];
       }
     } );
   };
-  var maxSize = 5;
-  var message = "最多选择" + maxSize + "个";
-  
-  function doCheck () {
-    if ( maxSize == 1 ) {
-      picker.clear();
-      return true;
-    }
-    if ( picker.data().length >= maxSize ) {
-      alert( message );
-      return false;
-    }
-  }
-  
-  var picker = doPicker();
-  picker.before( 'pick', doCheck );
-  var callClick = function() {
-  }
-  var cityData = doCity();
-  var hotCity  = doHotCity();
-  var province = doProvince();
-  var vueApp = new Vue( {
-    el:'#vueApp',
-    data:{
-      hotCity:hotCity.data(),
-      province:province.data()
-    },
-    methods:{
-      toggle:function( event ) {
-        var target = event.target;
-        var that   = $( target );
-        var id     = that.data( 'id' );
-        var city   = cityData.find( id );
-        var pid    = city.pid;
-        if ( pid && cityData.find( pid ).disabled == true ) {
-          return;
+  var CityRender = (function() {
+    var intance = null;
+    
+    function CityRender () {
+      var settings = {};
+      var target   = {};
+      var city     = doCity();
+      var province = doProvince();
+      var picker   = doPicker();
+      var vueApp   = new Vue( {
+        el:'#vueApp',
+        data:{
+          hotCity:province.hotData(),
+          province:province.data()
+        },
+        methods:{
+          toggle:function( event ) {
+            var target = event.target;
+            var that   = $( target );
+            var id     = that.data( 'id' );
+            var item   = city.find( id );
+            var pid    = item.pid;
+            if ( pid && city.find( pid ).disabled == true ) {
+              return;
+            }
+            if ( settings.max == 1 ) {
+              picker.clear();
+            }
+            picker.toggle( item );
+          },
+          list:function( event ) {
+            var target = event.target;
+            var parent = city.find( $( target ).data( 'id' ) );
+            if ( parent.childrens ) {
+              picker.list( parent );
+            } else {
+              this.toggle( event );
+            }
+          },
+          close:function() {
+            $( '#vueApp' ).hide();
+          }
         }
-        picker.toggle( city );
-        callClick();
-      },
-      list:function( event ) {
-        var target = event.target;
-        var parent = cityData.find( $( target ).data( 'id' ) );
-        picker.list( cityData.find( $( target ).data( 'id' ) ) );
-        if ( !parent.childrens ) {
-          callClick();
+      } );
+      // 删除选中的
+      $( document ).on( 'click', '[data-city-close]', function( event ) {
+        // 关闭选中的
+        var id = $( this ).data( 'city-close' );
+        picker.unpick( id );
+        event.stopPropagation();
+      } );
+      // AOP
+      picker.before( 'pick', doCheck );
+      picker.after( 'pick', render );
+      picker.after( 'unpick', render );
+      /**
+       * 初始化
+       */
+      this.init = function( _settings, _target, data ) {
+        settings = _settings;
+        target   = _target;
+        var type = $.type( data );
+        if ( type == 'string' ) {
+          data = data.split( ',' );
         }
-      },
-      subAll:function( event ) {
-        var target = event.target;
-        picker.subAll( cityData.find( $( target ).data( 'id' ) ) );
-        callClick();
-      },
-      unpick:function( event ) {
-        var target = event.target;
-        var key    = $( target ).attr( "data-key" );
-        picker.unpick( key );
+        data = data.filter( function( data ) {
+            return data != '';
+          } ) || [];
+        picker.init( city.find( data ) );
+      }
+      /**
+       * 选择前检查
+       * @returns {boolean}
+       */
+      function doCheck () {
+        var maxSize = settings.max || 5;
+        var message = settings.tips || "最多选择" + maxSize + "个";
+        if ( maxSize == 1 ) {
+          $( '#vueApp' ).hide();
+          return true;
+        }
+        if ( picker.data().length >= maxSize ) {
+          alert( message );
+          return false;
+        }
+      }
+      
+      /**
+       * 渲染数据
+       * @returns {{html: Array, value: Array}}
+       */
+      function render () {
+        var data  = picker.data();
+        var html  = [];
+        var value = [];
+        data.forEach( function( _data, index ) {
+          var name = _data.name;
+          var id   = _data.id;
+          value.push( id );
+          html.push( '<div class="tag-checked-name">' + name + '<em data-city-close="' + index + '"></em></div>' )
+        } );
+        target.html( html.join( '' ) );
+        target.attr( 'value', value.join( ',' ) );
+        $( settings.input ).val( value );
       }
     }
-  } );
-  
-  function init ( value ) {
-    cityData.clear();
-    var data = value;
-    if ( data ) {
-      data = cityData.find( data.split( ',' ) );
-    } else {
-      data = [];
-    }
-    $.each( data, function( _, d ) {
-      d.checked = true;
-      if ( d.childrens ) {
-        d.disabled = true;
+    
+    return {
+      intance:function() {
+        if ( !intance ) {
+          intance = new CityRender();
+        }
+        return intance;
       }
-    } );
-    //vueApp._data.result = data;
-    picker.init( data );
-  }
-  
-  function getData () {
-    return picker.data();
-  }
-  
-  var node = $( '#vueApp' );
-  node.on( 'click', '.city-close', function() {
-    node.hide();
-  } )
-  $( document )
-  .on( 'mouseleave', '.city-sub-block', function() {
-    var that = $( this );
-    var id   = that.data( 'id' );
-    // cityData.find(id).list = false;
-  } )
-  window.cityPlugin = {
-    el:function() {
-      return node;
-    },
-    load:function( value ) {
-      init( value );
-      return this;
-    },
-    show:function() {
-      node.show();
-    },
-    hide:function() {
-      node.hide();
-      return this;
-    },
-    click:function( _callClick ) {
-      callClick = _callClick;
-      return this;
-    },
-    getData:function() {
-      return getData()
-    },
-    setMessage:function( _message ) {
-      message = _message;
-      return this;
-    },
-    setMaxSize:function( size ) {
-      maxSize = size;
-      return this;
     }
-  }
-})();
-$( function() {
-  $( document ).on( "click", '[data-city-load]', function() {
-    var that  = $( this );
-    var value = that.attr( 'data-city-value' );
-    var offset = that.offset();
-    var width  = that.outerWidth();
-    var top  = offset.top - 120;
-    var left = offset.left + width;
-    cityPlugin.el().css( { 'left':left, 'top':top } );
-    cityPlugin.setMaxSize( 1 ).setMessage( "最少输入六个" ).load( value ).show();
-    cityPlugin.click( function() {
-      var data = cityPlugin.getData();
-      $( '#vueApp' ).hide();
-      console.log( data );
-      that.html( data.map( function( d ) {
-        return d.name
-      } ).join( ',' ) );
-      that.attr( 'data-city-value', data.map( function( d ) {
-        return d.id
-      } ).join( ',' ) )
+  })();
+  $.fn.city      = function( options ) {
+    var cityRender = CityRender.intance();
+    var that       = $( this );
+    // 初始化数据，方便编辑操作
+    var init       = this.init = function( data ) {
+      cityRender.init( options, that, data );
+    };
+    // 点击打开行业弹框
+    that.click( function() {
+      var that   = $( this );
+      var offset = that.offset();
+      var width  = that.outerWidth();
+      var height = that.outerHeight();
+      var top    = offset.top + height / 2 - 120;
+      var left   = offset.left + width;
+      var val    = that.attr( 'value' );
+      init( val );
+      $( '#vueApp' ).css( { 'left':left, 'top':top } ).show();
     } );
-  } );
+    return this;
+  }
 } );

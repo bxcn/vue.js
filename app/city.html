@@ -16,28 +16,17 @@
   <script src="/Public/js/third3/aspect.js"></script>
 </head>
 <style type="text/css">
-  .vue_layer {
-    display : none;
-  }
 
-  .modal-body {
-    width   : 1000px;
-    margin  : 0 auto;
-    padding : 0;
-    border  : 1px solid #ddd;
-  }
-
-  .panel-trade {
-    width  : 1000px;
-    height : 600px;
-  }
 </style>
 <body>
-<a href="#" id="City" data-city-load data-city-value="" style="margin:200px;display:block;width:100px;height:30px;background-color: red;">初始化</a>
+<a href="#" data-city-load1 value="310000,710000,500000">初始化</a>
+<a href="#" data-city-load2 value="310000,710000,500000">初始化</a>
+<input id="cityHiddenValue1" type="hidden">
+<input id="cityHiddenValue2" type="hidden">
 <div id="vueApp" class="city-block">
   <div class="city-header">
     <div class="city-title">请选择工作城市<em>单选</em></div>
-    <div class="city-close"></div>
+    <div @click="close" class="city-close"></div>
   </div>
   <div class="city-main">
     <div class="city-block-item">
@@ -72,6 +61,21 @@
   </div>
 </div>
 <script src="/Public/js/view/city.js"></script>
+
+<script>
+  $( function() {
+    $( '[data-city-load1]' ).city( {
+      input:'#cityHiddenValue1',
+      max:1,
+      tips:'最多输入一个'
+    } ).init( '310000,500000' );
+    $( '[data-city-load2]' ).city( {
+      input:'#cityHiddenValue2',
+      max:10,
+      tips:'最多输入六个'
+    } ).init( '130800,130700,130600,130900,131000' );
+  } );
+</script>
 </body>
 
 </html>
