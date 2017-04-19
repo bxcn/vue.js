@@ -254,7 +254,9 @@ $( function() {
       cityRender.init( options, that, data );
     };
     // 点击打开行业弹框
-    that.click( function() {
+    that.click( function( event ) {
+      event      = window.event || event;
+      var target = event.srcElement || event.target;
       var that   = $( this );
       var offset = that.offset();
       var width  = that.outerWidth();
@@ -263,7 +265,9 @@ $( function() {
       var left   = offset.left + width;
       var val    = that.attr( 'value' );
       init( val );
-      $( '#vueApp' ).css( { 'left':left, 'top':top } ).show();
+      if ( $( target ).hasClass( 'tag-checked-name' ) == false && $( target ).is( '[data-city-close]' ) == false ) {
+        $( '#vueApp' ).css( { 'left':left, 'top':top } ).show();
+      }
     } );
     return this;
   }

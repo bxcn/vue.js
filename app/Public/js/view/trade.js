@@ -48,7 +48,7 @@ $( function() {
       init:function( data ) {
         this.clear();
         var that = this;
-        if ( data.length != 0 ) {
+        if ( $.isArray( data ) && data.length != 0 ) {
           data.forEach( function( _data ) {
             that.pick( _data );
           } )
@@ -122,6 +122,8 @@ $( function() {
         var id = $( this ).data( 'trade-close' );
         picker.unpick( id );
         event.stopPropagation();
+        event.preventDefault();
+        return false;
       } );
       // AOP
       picker.before( 'pick', doCheck );
@@ -178,26 +180,38 @@ $( function() {
       }
     }
   })();
-  $.fn.trade      = function( options ) {
-    var tradeRender = TradeRender.intance();
-    var that        = $( this );
-    // 初始化数据，方便编辑操作
-    var init        = this.init = function( data ) {
-      tradeRender.init( options, that, data );
-    };
-    // 点击打开行业弹框
-    that.click( function() {
-      var that   = $( this );
-      var offset = that.offset();
-      var width  = that.outerWidth();
-      var height = that.outerHeight();
-      var top    = offset.top + height / 2 - 120;
-      var left   = offset.left + width;
-      var val    = that.attr( 'value' );
-      init( val );
-      $( '#tradeVueApp' ).css( { 'left':left, 'top':top } ).show();
-    } );
-    return this;
-  }
+  $.extend( $.fn, {
+    trade:function( options ) {
+      // 默认状态
+      var defaults    = {
+        input:'#tradeHiddenValue2',
+        max:6,
+        tips:'最多输入六个'
+      };
+      var settings    = $.extend( {}, defaults, options );
+      var tradeRender = TradeRender.intance();
+      var element     = $( this );
+      // 初始化数据，方便编辑操作
+      var init        = this.init = function( data ) {
+        tradeRender.init( settings, element, data );
+      };
+      // 点击打开行业弹框
+      element.click( function( event ) {
+        event      = window.event || event;
+        var target = event.srcElement || event.target;
+        var offset = element.offset();
+        var width  = element.outerWidth();
+        var height = element.outerHeight();
+        var top    = offset.top + height / 2 - 120;
+        var left   = offset.left + width;
+        var val    = element.attr( 'value' );
+        init( val );
+        if ( $(target).hasClass('tag-checked-name') == false && $( target ).is( '[data-trade-close]' ) == false ) {
+          $( '#tradeVueApp' ).css( { 'left':left, 'top':top } ).show();
+        }
+      } );
+      return this;
+    }
+  } )
 } );
 
