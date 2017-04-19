@@ -136,11 +136,32 @@ $( function() {
     function CityRender () {
       var settings = {};
       var target   = {};
-      var city     = doCity();
+      // 省份
       var province = doProvince();
+      // 城市
+      var city     = doCity();
+      // 选择器
       var picker   = doPicker();
+  
+      /**
+       * 初始化
+       */
+      this.init = function( _settings, _target, data ) {
+        settings = _settings;
+        target   = _target;
+        var type = $.type( data );
+        if ( type == 'string' ) {
+          data = data.split( ',' );
+        }
+        data = data.filter( function( data ) {
+            return data != '';
+          } ) || [];
+        picker.init( city.find( data ) );
+      }
+      
+      
       var vueApp   = new Vue( {
-        el:'#vueApp',
+        el:'#cityVueApp',
         data:{
           hotCity:province.hotData(),
           province:province.data()
@@ -170,7 +191,7 @@ $( function() {
             }
           },
           close:function() {
-            $( '#vueApp' ).hide();
+            $( '#cityVueApp' ).hide();
           }
         }
       } );
@@ -181,25 +202,15 @@ $( function() {
         picker.unpick( id );
         event.stopPropagation();
       } );
+      $( document ).on( 'mouseleave', '#cityVueApp', function( event ) {
+        var that = $( this );
+        that.hide();
+      } );
       // AOP
       picker.before( 'pick', doCheck );
       picker.after( 'pick', render );
       picker.after( 'unpick', render );
-      /**
-       * 初始化
-       */
-      this.init = function( _settings, _target, data ) {
-        settings = _settings;
-        target   = _target;
-        var type = $.type( data );
-        if ( type == 'string' ) {
-          data = data.split( ',' );
-        }
-        data = data.filter( function( data ) {
-            return data != '';
-          } ) || [];
-        picker.init( city.find( data ) );
-      }
+
       /**
        * 选择前检查
        * @returns {boolean}
@@ -208,7 +219,7 @@ $( function() {
         var maxSize = settings.max || 5;
         var message = settings.tips || "最多选择" + maxSize + "个";
         if ( maxSize == 1 ) {
-          $( '#vueApp' ).hide();
+          $( '#cityVueApp' ).hide();
           return true;
         }
         if ( picker.data().length >= maxSize ) {
@@ -248,25 +259,38 @@ $( function() {
   })();
   $.fn.city      = function( options ) {
     var cityRender = CityRender.intance();
-    var that       = $( this );
+    var element       = $( this );
     // 初始化数据，方便编辑操作
     var init       = this.init = function( data ) {
-      cityRender.init( options, that, data );
+      cityRender.init( options, element, data );
     };
-    // 点击打开行业弹框
-    that.click( function( event ) {
-      event      = window.event || event;
-      var target = event.srcElement || event.target;
-      var that   = $( this );
-      var offset = that.offset();
-      var width  = that.outerWidth();
-      var height = that.outerHeight();
+  
+    /**
+     * 返回元素的坐标
+     * @param element 元素对象
+     * @returns {{top: number, left: number}}
+     */
+    function position(element) {
+      var offset = element.offset();
+      var width  = element.outerWidth();
+      var height = element.outerHeight();
       var top    = offset.top + height / 2 - 120;
       var left   = offset.left + width;
-      var val    = that.attr( 'value' );
-      init( val );
-      if ( $( target ).hasClass( 'tag-checked-name' ) == false && $( target ).is( '[data-city-close]' ) == false ) {
-        $( '#vueApp' ).css( { 'left':left, 'top':top } ).show();
+    
+      return {
+        top:top,
+        left:left
+      }
+    }
+    
+    
+    // 点击打开行业弹框
+    element.click( function( event ) {
+      var target = $( event.target );
+      var offset = position(element);
+      init( element.attr( 'value' ) );
+      if ( target.hasClass( 'tag-checked-name' ) == false && target.is( '[data-city-close]' ) == false ) {
+        $( '#cityVueApp' ).css(  { 'left':offset.left, 'top':offset.top }).show();
       }
     } );
     return this;

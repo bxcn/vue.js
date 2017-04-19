@@ -94,12 +94,21 @@ $( function() {
     var intance = null;
     
     function TradeRender () {
-      var settings    = {};
-      var target      = {};
+      var settings = {};
+      var target   = {};
       // 行业数据
-      var trade       = doTrade();
+      var trade    = doTrade();
       // 行业选择器
-      var picker      = doPicker();
+      var picker   = doPicker();
+      /**
+       * 初始化
+       */
+      this.init = function( _settings, _target, data ) {
+        settings = _settings;
+        target   = _target;
+        data     = data && trade.find( data.split( ',' ) ) || [];
+        picker.init( data );
+      }
       var tradeVueApp = new Vue( {
         el:'#tradeVueApp',
         data:{
@@ -122,22 +131,16 @@ $( function() {
         var id = $( this ).data( 'trade-close' );
         picker.unpick( id );
         event.stopPropagation();
-        event.preventDefault();
-        return false;
+      } );
+      // 删除选中的
+      $( document ).on( 'mouseleave', '#tradeVueApp', function( event ) {
+        var that = $( this );
+        that.hide();
       } );
       // AOP
       picker.before( 'pick', doCheck );
       picker.after( 'pick', render );
       picker.after( 'unpick', render );
-      /**
-       * 初始化
-       */
-      this.init = function( _settings, _target, data ) {
-        settings = _settings;
-        target   = _target;
-        data     = data && trade.find( data.split( ',' ) ) || [];
-        picker.init( data );
-      }
       /**
        * 选择前检查
        * @returns {boolean}
@@ -195,19 +198,31 @@ $( function() {
       var init        = this.init = function( data ) {
         tradeRender.init( settings, element, data );
       };
-      // 点击打开行业弹框
-      element.click( function( event ) {
-        event      = window.event || event;
-        var target = event.srcElement || event.target;
+      
+      /**
+       * 返回元素的坐标
+       * @param element 元素对象
+       * @returns {{top: number, left: number}}
+       */
+      function position ( element ) {
         var offset = element.offset();
         var width  = element.outerWidth();
         var height = element.outerHeight();
         var top    = offset.top + height / 2 - 120;
         var left   = offset.left + width;
-        var val    = element.attr( 'value' );
-        init( val );
-        if ( $(target).hasClass('tag-checked-name') == false && $( target ).is( '[data-trade-close]' ) == false ) {
-          $( '#tradeVueApp' ).css( { 'left':left, 'top':top } ).show();
+        return {
+          top:top,
+          left:left
+        }
+      }
+      
+      // 点击打开行业弹框
+      element.click( function( event ) {
+        var target = $( event.target );
+        var offset = position( element );
+        init( element.attr( 'value' ) );
+        if ( target.hasClass( 'tag-checked-name' ) == false && target.is( '[data-trade-close]' ) == false ) {
+          $( '#tradeVueApp' ).css( { 'left':offset.left, 'top':offset.top } ).show();
         }
       } );
       return this;
