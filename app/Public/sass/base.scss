@@ -5,8 +5,16 @@
  */
 /* 删除选中标签 */
 body {
-  padding-top:100px;
+  padding-top : 100px;
 }
+h1 {
+  font-size:18px;
+  text-align:center;
+  line-height:30px;
+  margin           : 40px auto 0;
+  overflow:hidden;
+}
+
 .tag-checked-name {
   display          : inline-block;
   position         : relative;
@@ -63,7 +71,7 @@ body {
 .block {
   width            : 300px;
   height           : 100px;
-  margin           : 40px auto 0;
+  margin           : 0 auto 0;
   overflow         : hidden;
   background-color : #efefef;
   border-radius    : 10px;

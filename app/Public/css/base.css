@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/**
+ * Name：
+ * Anthor：dyl
+ * Date: 2017/4/18 17:06
+ */
+/* 删除选中标签 */
+body {
+  padding-top: 100px; }
+
+h1 {
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+  margin: 40px auto 0;
+  overflow: hidden; }
+
+.tag-checked-name {
+  display: inline-block;
+  position: relative;
+  height: 24px;
+  border-radius: 1px;
+  color: #4abee0;
+  font-size: 12px;
+  line-height: 24px;
+  padding: 0 20px 0 8px;
+  background-color: #f7fdff;
+  border: solid 1px #4abee0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 5px; }
+
+.tag-checked-name:first-of-type {
+  margin-left: 0px; }
+
+.tag-checked-name em {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  transform: rotate(45deg); }
+
+.tag-checked-name em:after {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 6px;
+  width: 13px;
+  height: 1px;
+  background: #4abee0; }
+
+.tag-checked-name em:before {
+  display: block;
+  position: absolute;
+  content: '';
+  top: 0px;
+  left: 5px;
+  width: 1px;
+  height: 13px;
+  background: #4abee0; }
+
+.block {
+  width: 300px;
+  height: 100px;
+  margin: 0 auto 0;
+  overflow: hidden;
+  background-color: #efefef;
+  border-radius: 10px;
+  padding: 10px;
+  border: #e5e5e5 1px solid; }

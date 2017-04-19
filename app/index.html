@@ -6,24 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
-  <title>bootStrap</title>
+  <title>index</title>
   <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-sham.js"></script>
   <script src="//cdn.bootcss.com/es5-shim/4.5.9/es5-shim.min.js"></script>
   <script src="https://cdn.bootcss.com/vue/2.2.6/vue.min.js"></script>
   <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
-  <script src="/Public/js/third3/aspect.js"></script>
-  <script src="/Public/js/view/data.js"></script>
-  <link rel="stylesheet" href="/Public/css/base.css">
-  <link rel="stylesheet" href="/Public/css/city.css">
-  <link rel="stylesheet" href="/Public/css/trade.css">
+  <script src="Public/js/third3/aspect.js"></script>
+  <script src="Public/js/view/data.js"></script>
+  <link rel="stylesheet" href="Public/css/base.css">
+  <link rel="stylesheet" href="Public/css/city.css">
+  <link rel="stylesheet" href="Public/css/trade.css">
 </head>
 <body>
+<h1>城市仅选择单个</h1>
 <div class="block" data-city-load1 value="">初始化</div>
+<h1>城市选择多个</h1>
 <div class="block" data-city-load2 value="310000,710000,500000">初始化</div>
 <input id="cityHiddenValue1" type="hidden">
 <input id="cityHiddenValue2" type="hidden">
-
+<h1>行业初始化</h1>
 <div class="block" data-trade-load1 value="" >初始化</div>
+<h1>行业选择多个</h1>
 <div class="block" data-trade-load2 value="32" >初始化</div>
 <input id="tradeHiddenValue1" type="hidden">
 <input id="tradeHiddenValue2" type="hidden">
@@ -88,8 +91,8 @@
     </div>
   </div>
 </div>
-<script src="/Public/js/view/city.js"></script>
-<script src="/Public/js/view/trade.js"></script>
+<script src="Public/js/view/city.js"></script>
+<script src="Public/js/view/trade.js"></script>
 <script>
   $( function() {
     $( '[data-city-load1]' ).city( {
