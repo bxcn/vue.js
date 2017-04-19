@@ -24,7 +24,6 @@ gulp.task( 'serve', [ 'sass' ], () => {
   } )
   // 每当修改以下文件夹下的文件时就会刷新浏览器;
   gulp.watch( 'app/**/*.scss', [ 'sass' ] );
-  gulp.watch( 'app/**/*.js', [ 'js' ] );
   gulp.watch( [
     'app/**/*.*'
   ] ).on( 'change', reload );

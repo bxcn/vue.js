@@ -66,7 +66,7 @@ $( function() {
    */
   var doPicker   = function() {
     var _data = [];
-    var _list = [];
+    var _list = null;
     return AOP.mixin( {
       init:function( data ) {
         this.clear();
@@ -100,16 +100,10 @@ $( function() {
       },
       clearList:function( item ) {
         // 点击省份时先清楚现在打开的tag
-        if ( item ) {
-          _list.forEach( function( data ) {
-            if ( item.id != data.id ) {
-              data.list = data.selected = false;
-            }
-          } );
-        } else {
-          _list.forEach( function( data ) {
-            data.list = data.selected = false;
-          } );
+        var data = _list;
+        if ( _list && (arguments.length == 0 || item.id != data.id) ) {
+          data.list = data.selected = false;
+          _list == null;
         }
       },
       list:function( item ) {
@@ -120,10 +114,9 @@ $( function() {
           //已经是选中状态
           if ( item.selected ) {
             item.list = item.selected = false;
-            _list == [];
           } else {
             item.list = item.selected = true;
-            _list.push( item );
+            _list = item;
           }
         } else {
           this.toggle( item );
